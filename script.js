@@ -5,7 +5,7 @@ document.body.appendChild(container); // Append container to document body.
 const createTiles = (container, numOfTiles) => {
     for (let j = 0; j < numOfTiles; j++) {
         const tile = document.createElement('div'); // Create the tile
-        styleTiles(tile, getRandomColor); // Apply styling in checkerboard pattern.
+        styleTiles(tile, getRandomColor); // Apply styling to tiles.
         container.appendChild(tile); // Append finished tile to the container.
     }
 }

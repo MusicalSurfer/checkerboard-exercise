@@ -4,8 +4,8 @@ document.body.appendChild(container); // Append container to document body.
 // Function that creates and appends desired amount of tiles in a gradient.
 const createTiles = (container, numOfTiles) => {
     let rows = Math.sqrt(numOfTiles); // Find how many rows are in given grid
-    let firstRgbValue = [230, 0, 20]; // Set first color value
-    let secondRgbValue = [255, 0, 0]; // Set second color value
+    let firstRgbValue = [230, 0, 20, 1]; // Set first color value
+    let secondRgbValue = [255, 0, 0, 1]; // Set second color value
 
     // For every tile created, style and update color values to create a gradient.
     for (let i = 0; i < numOfTiles; i++) {
@@ -19,8 +19,8 @@ const createTiles = (container, numOfTiles) => {
 const styleTiles = (tile, index, rows, color1, color2) => {
 
     // Store color values in loop so they are updated each iteration.
-    let firstRgb = 'rgb(' + color1[0] + ', ' + color1[1] + ', ' + color1[2] + ')';
-    let secondRgb = 'rgb(' + color2[0] + ', ' + color2[1] + ', ' + color2[2] + ')';
+    let firstRgb = 'rgba(' + color1[0] + ', ' + color1[1] + ', ' + color1[2] + color2[3] + ')';
+    let secondRgb = 'rgba(' + color2[0] + ', ' + color2[1] + ', ' + color2[2] + color2[3] + ')';
     // Set grid size for tile.
     tile.style.width = '12.5%';
     tile.style.height = '12.5%';
@@ -32,9 +32,12 @@ const styleTiles = (tile, index, rows, color1, color2) => {
     else {
         tile.style.backgroundColor = secondRgb;
     }
-    // Increment rgb values up by 5 for each color to create gradient.
+    // Increment rgb values up for each color to create gradient.
     color1[1] += 5;
-    color2[1] += 5;
+    color1[3] -= 1 * (1 / 64);
+    color2[1] -= 5;
+    color2[3] -= 1 * (1 / 64);
+    console.log(color1[3]);
 }
 // Function to set style for container.
 const styleContainer = (container) => {
@@ -42,6 +45,7 @@ const styleContainer = (container) => {
     container.style.flexWrap = 'wrap';
     container.style.width = '800px';
     container.style.height = '800px';
+    container.style.backgroundImage = "linear-gradient(to bottom right, red, yellow)";
 }
 
 styleContainer(container); // Style container (ln37).

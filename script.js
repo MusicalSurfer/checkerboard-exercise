@@ -1,30 +1,20 @@
 const container = document.createElement('div'); // Create a container.
 document.body.appendChild(container); // Append container to document body.
-let blinkSpeed = 2000;
 
-// Main function that creates and appends desired amount of tiles in checkerboard patter to container.
+// Function that creates and appends desired amount of tiles in checkerboard patter to container.
 const createTiles = (container, numOfTiles) => {
     for (let j = 0; j < numOfTiles; j++) {
         const tile = document.createElement('div'); // Create the tile
-        styleTiles(tile); // Apply styling to tiles (ln15).
+        styleTiles(tile, getRandomColor); // Apply styling in checkerboard pattern.
         container.appendChild(tile); // Append finished tile to the container.
     }
 }
 
 // Helper function to set style for tiles in createTiles.
-const styleTiles = (tile) => {
+const styleTiles = (tile, randomColorFunction) => {
     tile.style.width = '12.5%';
     tile.style.height = '12.5%';
-    blinkMe(tile, getRandomColor); // Set blinking attribute and changes random colors (ln22).
-}
-
-// Helper function that blinks tiles at a rate of 2 seconds.
-const blinkMe = (elem, randomColorFunction) => {
-    // Every 2 seconds, given element's visibility is changed and is assigned a new random color.
-    setInterval(() => {
-        elem.style.visibility = (elem.style.visibility === 'hidden') ? 'visible' : 'hidden';
-        elem.style.backgroundColor = randomColorFunction(); // Set background color to random color (ln33.)
-    }, blinkSpeed);
+    tile.style.backgroundColor = randomColorFunction();
 }
 
 // Helper function to get random hex color.
